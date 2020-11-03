@@ -8,9 +8,7 @@
 #include "sokoban.h"
 #include <unistd.h>
 
-int put_str(char *str)
+void put_str(char const *str)
 {
-    int i = my_strlen(str);
-    write(1, str, i);
-    return (i);
+    write(1, str, my_strlen(str));
 }
