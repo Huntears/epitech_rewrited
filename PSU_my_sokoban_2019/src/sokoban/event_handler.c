@@ -10,11 +10,9 @@
 
 int event_handler(o_link_t *map)
 {
-    display_map(map);
-    int ch = getch();
-    switch (ch) {
+    switch (getch()) {
         case 32:
-            return (0);
+            return (1);
         case KEY_UP:
             move_up(map);
             break;
@@ -28,7 +26,5 @@ int event_handler(o_link_t *map)
             move_right(map);
             break;
     }
-    if (is_won(map))
-        return (0);
-    return (1);
+    return (0);
 }

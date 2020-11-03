@@ -10,5 +10,8 @@
 
 int main_loop(o_link_t *map)
 {
-    return (event_handler(map));
+    display_map(map);
+    if (event_handler(map) || is_won(map))
+        return (0);
+    return (1);
 }
