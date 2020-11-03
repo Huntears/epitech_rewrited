@@ -9,6 +9,5 @@
 
 vector2d_t get_player_location(o_link_t *map)
 {
-    for (; map->display != 'P'; map = map->next);
-    return (map->position);
+    return (get_player_node(map)->position);
 }
