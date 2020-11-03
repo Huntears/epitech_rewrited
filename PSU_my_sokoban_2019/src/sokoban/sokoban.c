@@ -18,6 +18,18 @@ static void init_display(void)
     keypad(stdscr, TRUE);
 }
 
+static void destroy_sokoban(o_link_t *map)
+{
+    o_link_t *current = NULL;
+
+    endwin();
+    while (map) {
+        current = map;
+        map = map->next;
+        free(current);
+    }
+}
+
 int sokoban(int argc, char **argv)
 {
     o_link_t *map = NULL;
@@ -31,6 +43,6 @@ int sokoban(int argc, char **argv)
     init_display();
     while (main_loop(map))
         refresh();
-    endwin();
+    destroy_sokoban(map);
     return (0);
 }
