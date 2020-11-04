@@ -7,7 +7,6 @@
 
 #include "sokoban.h"
 
-vector2d_t get_player_location(o_link_t *map)
-{
-    return (get_player_node(map)->position);
+vector2d_t get_player_location(o_link_t *map) {
+  return (get_player_node(map)->position);
 }

@@ -9,22 +9,22 @@
 #define SOKOBAN_H
 
 typedef struct vector2d_s {
-    int x;
-    int y;
+  int x;
+  int y;
 } vector2d_t;
 
 /*
-*  Node for linked list containing :
-*   vector2d_t position;
-*   int priority;
-*   char display;
-*   struct o_link_s *next;
-*/
+ *  Node for linked list containing :
+ *   vector2d_t position;
+ *   int priority;
+ *   char display;
+ *   struct o_link_s *next;
+ */
 typedef struct o_link_s {
-    vector2d_t position;
-    int priority;
-    char display;
-    struct o_link_s *next;
+  vector2d_t position;
+  int priority;
+  char display;
+  struct o_link_s *next;
 } o_link_t;
 
 int sokoban(int argc, char **argv);
@@ -41,7 +41,7 @@ o_link_t *get_player_node(o_link_t *map);
 o_link_t *get_dest(vector2d_t pos, o_link_t *map);
 int is_won(o_link_t *map);
 
-//Movements functions
+// Movements functions
 
 int move_up(o_link_t *map);
 int move_down(o_link_t *map);

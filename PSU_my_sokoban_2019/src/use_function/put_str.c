@@ -8,7 +8,4 @@
 #include "sokoban.h"
 #include <unistd.h>
 
-void put_str(char const *str)
-{
-    write(1, str, my_strlen(str));
-}
+void put_str(char const *str) { write(1, str, my_strlen(str)); }

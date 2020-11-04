@@ -5,13 +5,12 @@
 ** init_lib
 */
 
-#include <ncurses.h>
 #include "sokoban.h"
+#include <ncurses.h>
 
-int main_loop(o_link_t *map)
-{
-    display_map(map);
-    if (event_handler(map) || is_won(map))
-        return (0);
-    return (1);
+int main_loop(o_link_t *map) {
+  display_map(map);
+  if (event_handler(map) || is_won(map))
+    return (0);
+  return (1);
 }
