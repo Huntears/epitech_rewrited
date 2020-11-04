@@ -31,7 +31,7 @@ int is_won(o_link_t *map)
 {
     o_link_t *original = map;
 
-    for (;map != NULL; map = map->next) {
+    for (; map != NULL; map = map->next) {
         for (; map->display != 'X' && map->next; map = map->next);
         if (!(is_on_landmark(map, original)))
             return (0);

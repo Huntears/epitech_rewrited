@@ -32,9 +32,9 @@ void display_map(o_link_t *map)
         buff[i] = 0;
     for (; map; map = map->next)
         if ((!map->priority && !buff[map->position.x + map->position.y
-            * (high.x + 1)]) || map->priority)
+                                                     * (high.x + 1)]) || map->priority)
             buff[map->position.x + map->position.y * (high.x + 1)]
-            = map->display;
+                = map->display;
     for (int y = 0; y <= high.y; ++y)
         for (int x = 0; x <= high.x; ++x)
             mvprintw(y, x, "%c", buff[x + y * (high.x + 1)]);

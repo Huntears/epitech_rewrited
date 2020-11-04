@@ -13,11 +13,11 @@
 int helper(void)
 {
     put_str("USAGE\n"
-        "\t./my_sokoban map\n"
-        "DESCRIPTION\n"
-        "\tmap\tfile representing the warehouse map, "
-        "containing '#' for walls,\n"
-        "\t\t'P' for the player, 'X' for boxes and 'O' "
-        "for storage locations.\n");
+            "\t./my_sokoban map\n"
+            "DESCRIPTION\n"
+            "\tmap\tfile representing the warehouse map, "
+            "containing '#' for walls,\n"
+            "\t\t'P' for the player, 'X' for boxes and 'O' "
+            "for storage locations.\n");
     return (0);
 }
