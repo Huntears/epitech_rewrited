@@ -3,3 +3,4 @@ my_sokoban
 *.gcda
 *.gcno
 .vscode
+.idea

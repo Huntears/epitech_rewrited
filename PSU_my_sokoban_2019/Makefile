@@ -5,8 +5,6 @@
 ## The Makefile for my_sokoban
 ##
 
-CC		=	gcc
-
 SRC 	=	src/sokoban/sokoban.c				\
 			src/sokoban/helper.c 				\
 			src/use_function/my_strlen.c 		\
@@ -35,11 +33,11 @@ MAIN_OBJ	=	$(MAIN_SRC:.c=.o)
 
 #TEST_OBJ	=	$(TEST_SRC:.c=.o)
 
-CFLAGS	=	-I./include -Wall -Wextra -Werror --coverage
+CFLAGS	=	-I./include -Wall -Wextra -Wfloat-equal -Werror -std=c11 -pedantic -ftrapv -Wwrite-strings -Wunreachable-code -Wshadow -Wstrict-prototypes -Wstrict-overflow=5 -Winit-self
 
-#TEST_CFLAGS	=	-lcriterion
+#TEST_CFLAGS	=	-lcriterion --coverage
 
-LDFLAGS	=	-lncurses
+LFLAGS	=	-lncurses
 
 TARGET	=	my_sokoban
 
@@ -53,7 +51,7 @@ COVERAGE        =       $(SRC:.c=.gcda)         \
 all:	$(TARGET)
 
 $(TARGET): $(OBJ) $(MAIN_OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(MAIN_OBJ) -o $(TARGET) $(LDFLAGS)
+	$(CC) $(CFLAGS) $(OBJ) $(MAIN_OBJ) -o $(TARGET) $(LFLAGS)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -66,7 +64,7 @@ test_build:
 	$(MAKE) $(TEST_OBJ)
 
 tests_run: test_build
-	$(CC) $(CFLAGS) $(TEST_CFLAGS) $(OBJ) $(TEST_OBJ) -o $(TARGET_TEST) $(LDFLAGS)
+	$(CC) $(CFLAGS) $(TEST_CFLAGS) $(OBJ) $(TEST_OBJ) -o $(TARGET_TEST) $(LFLAGS)
 	./unit_tests
 
 fclean: clean

@@ -12,9 +12,11 @@
 #include <unistd.h>
 #include "sokoban.h"
 
+// TODO : Simplify that whole garbage
 static void create_node(o_link_t **current, vector2d_t pos, char disp)
 {
     o_link_t *new_node = malloc(sizeof(o_link_t));
+
     new_node->display = disp;
     new_node->position = pos;
     if (disp == 'X' || disp == 'P')
@@ -25,26 +27,23 @@ static void create_node(o_link_t **current, vector2d_t pos, char disp)
     *current = new_node;
     if (new_node->priority == 1)
         create_node(current, pos, ' ');
-    return;
 }
 
+// TODO : Use a bigger buffer for performance sake
 static o_link_t *load_nodes(int fd, o_link_t *current)
 {
     char buff[1];
-    int ret = read(fd, buff, 1);
-    int x = 0;
-    int y = 0;
+    vector2d_t pos = {0, 0};
 
-    while (ret != 0) {
+    while (read(fd, buff, 1)) {
         if (buff[0] == '\n') {
-            y++;
-            x = 0;
+            pos.y++;
+            pos.x = 0;
         }
         else {
-            create_node(&current, (vector2d_t) {x, y}, buff[0]);
-            x++;
+            create_node(&current, pos, buff[0]);
+            pos.x++;
         }
-        ret = read(fd, buff, 1);
     }
     return (current);
 }
@@ -57,6 +56,7 @@ static o_link_t *load_nodes(int fd, o_link_t *current)
 o_link_t *load_map(char *path)
 {
     int fd = open(path, O_RDONLY);
+
     if (fd == -1)
         return (NULL);
     return (load_nodes(fd, NULL));

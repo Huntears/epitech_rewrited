@@ -29,8 +29,8 @@ typedef struct o_link_s {
 
 int sokoban(int argc, char **argv);
 int helper(void);
-int my_strlen(char *str);
-int put_str(char *str);
+int my_strlen(char const *str);
+void put_str(char const *str);
 int my_strcmp(char const *s1, char const *s2);
 o_link_t *load_map(char *path);
 int main_loop(o_link_t *map);

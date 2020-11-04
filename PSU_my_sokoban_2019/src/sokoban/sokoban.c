@@ -10,26 +10,39 @@
 #include <ncurses.h>
 #include "sokoban.h"
 
+static void init_display(void)
+{
+    initscr();
+    noecho();
+    curs_set(0);
+    keypad(stdscr, TRUE);
+}
+
+static void destroy_sokoban(o_link_t *map)
+{
+    o_link_t *current = NULL;
+
+    endwin();
+    while (map) {
+        current = map;
+        map = map->next;
+        free(current);
+    }
+}
+
 int sokoban(int argc, char **argv)
 {
-    int ret;
+    o_link_t *map = NULL;
 
     if (argc != 2)
         return (84);
     if (!(my_strcmp(argv[1], "-h")))
         return (helper());
-    o_link_t *map = load_map(argv[1]);
-    if (map == NULL)
+    if (!(map = load_map(argv[1])))
         return (84);
-    initscr();
-    noecho();
-    curs_set(0);
-    keypad(stdscr, TRUE);
-    do {
-        ret = main_loop(map);
+    init_display();
+    while (main_loop(map))
         refresh();
-    } while (ret);
-    display_map(map);
-    endwin();
+    destroy_sokoban(map);
     return (0);
 }
